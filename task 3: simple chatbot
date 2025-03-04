@@ -1,0 +1,29 @@
+import random
+
+class SimpleChatbot:
+    def __init__(self):
+        self.responses = {
+            "hi": ["Hello!", "Hi there!", "Hey!"],
+            "how are you": ["I'm good, thank you!", "I'm doing great!", "I'm fine, how about you?"],
+            "bye": ["Goodbye!", "See you later!", "Bye! Take care!"],
+        }
+
+    def get_response(self, user_input):
+        user_input = user_input.lower()
+        for key in self.responses:
+            if key in user_input:
+                return random.choice(self.responses[key])
+        return "Sorry, I didn't understand that."
+
+def chat():
+    chatbot = SimpleChatbot()
+    print("Chatbot: Hi! Type 'bye' to end the conversation.")
+    while True:
+        user_input = input("You: ")
+        if "bye" in user_input.lower():
+            print("Chatbot:", random.choice(chatbot.responses["bye"]))
+            break
+        print("Chatbot:", chatbot.get_response(user_input))
+
+if __name__ == "__main__":
+    chat()
